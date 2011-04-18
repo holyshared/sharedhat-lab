@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8" />
+	<title>SharedhatLab</title>
+	<meta name="description" content="" />
+	<meta name="author" content="n-horio" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn,b&amp;subset=latin" type="text/css" />
+	<!--[if gte IE 8]>
+	<script type="text/javascript">
+		(function(){
+			var html5 = 'abbr,article,footer,header,nav,section,time,aside,hgroup,nav';
+			html5.replace(/\w+/g, function(t){ document.createElement(t); })
+		}());
+	</script>
+	<![endif]-->
+</head>
+<body>
+	<article class="page">
+		<header class="head">
+    		<h1>SHAREDHATLAB</h1>
+		</header>
+
+		<article class="body">
+			<section class="leftCol">
+				<h2 class="h3">index</h2>
+				<section class="mod nav">
+					<h3 class="h4">navigation</h3>
+					<nav>
+						<ul>
+							<li><a title="Home" href="/">Home</a></li>
+							<li><a title="Artbeat" href="/artbeat">artbeat</a></li>
+							<li><a title="Foursquare" href="/foursquare">foursquare</a></li>
+						</ul>
+					</nav>
+				</section>
+			</section>
+			<section class="main">
+		        {% block content %}
+		        <!-- content -->
+		        {% endblock %}
+			</section>
+		</article>
+
+	    <footer class="foot">
+			<p class="copyright">Copyright (C) 2011 <a title="Noritaka Horio" href="http://sharedhat.com/">Noritaka Horio</a> All Rights Reserved.</p>
+	    </footer>
+	</article>
+</body>
+</html>
