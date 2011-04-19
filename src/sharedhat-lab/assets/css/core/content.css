@@ -22,3 +22,5 @@ ul.simpleList li{list-style-type:disc; margin-left:40px;}
 cite{display:block; text-align:right; padding-top: 10px;}
 /* ====== image treatments (get more from jason santa maria) ====== */
 .caption{font-size:13px; color:#666666; font-style:italic;padding-top:0;}
+
+.copyright { text-align: right; }

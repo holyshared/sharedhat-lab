@@ -1,0 +1,41 @@
+/*
+Copyright (c) 2009, Nicole Sullivan. All rights reserved.
+Code licensed under the BSD License:
+version: 0.2
+*/
+/* **************** BLOCK STRUCTURES ***************** */
+/* mod */
+.mod{margin:10px;}
+.mod .inner{/*background: url(skin/transparent.png) repeat left top;*/}
+.bd,.ft, .hd{display: inline-block; width:100%; *display:block; *width:auto; zoom:1;}
+.inner:after,.hd:after,.bd:after,.ft:after{clear:both;display:block;visibility:hidden;overflow:hidden;height:0 !important;line-height:0;font-size:xx-large;content:" x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x ";}
+.inner{position:relative;}
+
+.portlet { background: #eeeeee; -moz-border-radius: 5px; -moz-box-shadow: 0px 0px 5px #cccccc; }
+.portlet .hd {
+	margin: 1px 1px 0px 1px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background: #4971A0;
+	background: -moz-linear-gradient(
+		center bottom,
+    	#4971A0 0%,
+    	#6A8EBB 80%,
+    	#6A8EBB 100%
+	);
+	background: -webkit-gradient(
+    	linear,
+    	left 80%,
+    	left top,
+    	color-stop(0, #4971A0),
+    	color-stop(1, #6A8EBB),
+    	color-stop(1, #6A8EBB)
+	);
+	border-bottom: 2px solid #cccccc;
+}
+
+.portlet .hd h3, .portlet .hd .h3 { color: #ffffff; padding: 5px 15px 5px 15px; text-transform: capitalize; }
+.portlet .bd { padding: 10px 15px 0px 15px; }
+
+.nav { margin-left: 15px; margin-bottom: 15px; }
+.nav li { list-style: disc; margin-bottom: 5px; padding-left: 5px; text-transform: capitalize; }
