@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8" />
+	<title>SharedhatLab</title>
+	<meta name="description" content="" />
+	<meta name="author" content="n-horio" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn,b&amp;subset=latin" type="text/css" />
+	<!--[if gte IE 8]>
+	<script type="text/javascript">
+		(function(){
+			var html5 = 'abbr,article,footer,header,nav,section,time,aside,hgroup,nav';
+			html5.replace(/\w+/g, function(t){ document.createElement(t); })
+		}());
+	</script>
+	<![endif]-->
+</head>
+<body>
+	<article class="page">
+		{% block header %}<!-- header -->{% endblock %}
+		<article class="body">
+			{% block sidebar %}<!-- sidebar -->{% endblock %}
+			{% block content %}<!-- content -->{% endblock %}
+		</article>
+		{% block footer %}<!-- footer -->{% endblock %}
+	</article>
+</body>
+</html>

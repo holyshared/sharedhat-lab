@@ -23,7 +23,6 @@ class MainPage(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'views/index.html')
         self.response.out.write(template.render(path, {}))
 
-
 application = webapp.WSGIApplication([
     ('/', MainPage),
     ('/artbeat', artbeat.artbeat.MainPage),
