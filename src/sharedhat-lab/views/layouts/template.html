@@ -21,9 +21,11 @@
 </head>
 <body>
 	<article class="page liquid">
-		{% block header %}<!-- header -->{% endblock %}
 		<article class="body">
-			{% block sidebar %}<!-- sidebar -->{% endblock %}
+			<section class="leftCol">
+				{% block header %}<!-- header -->{% endblock %}
+				{% block sidebar %}<!-- sidebar -->{% endblock %}
+			</section>
 			{% block content %}<!-- content -->{% endblock %}
 		</article>
 		{% block footer %}<!-- footer -->{% endblock %}
