@@ -22,11 +22,19 @@
 <body>
 	<article class="page liquid">
 		<article class="body">
-			<section class="leftCol">
-				{% block header %}<!-- header -->{% endblock %}
+			<!--leftCol-->
+			<aside class="leftCol">
 				{% block sidebar %}<!-- sidebar -->{% endblock %}
+			</aside>
+			<!--/leftCol-->
+
+			<!--main-->
+			<section class="main">
+				{% block header %}<!-- header -->{% endblock %}
+				{% block content %}<!-- content -->{% endblock %}
 			</section>
-			{% block content %}<!-- content -->{% endblock %}
+			<!--/main-->
+
 		</article>
 		{% block footer %}<!-- footer -->{% endblock %}
 	</article>
