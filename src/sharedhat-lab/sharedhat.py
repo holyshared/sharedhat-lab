@@ -3,9 +3,9 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext.webapp import template
 
-import artbeat.artbeat
-import foursquare.foursquare
-import utils
+from app import utils
+from app.artbeat import artbeat
+from app.foursquare import foursquare
 
 class MainPage(webapp.RequestHandler):
 
@@ -22,8 +22,8 @@ class MainPage(webapp.RequestHandler):
 
 application = webapp.WSGIApplication([
     ('/', MainPage),
-    ('/artbeat', artbeat.artbeat.MainPage),
-    ('/foursquare', foursquare.foursquare.MainPage)
+    ('/artbeat', artbeat.MainPage),
+    ('/foursquare', foursquare.MainPage)
     ], debug=True
 )
 
