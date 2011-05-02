@@ -1,0 +1,3 @@
+[submodule "src/sharedhat-lab/venders/artbeat"]
+	path = src/sharedhat-lab/venders/artbeat
+	url = git://github.com/holyshared/artbeat.git
