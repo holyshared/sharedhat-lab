@@ -1,6 +1,8 @@
-import os
+import os, sys
 
-TEMPLATES_BASEPATH = os.path.join(os.path.dirname(__file__), '../views/')
+sys.path.append(os.path.join(os.path.dirname(__file__), '../libs'))
+
+TEMPLATES_BASEPATH = os.path.join(os.path.dirname(__file__), '../templates/')
 TEMPLATES_FILES = {
     'layout': TEMPLATES_BASEPATH + 'layouts/layout.html',
     'template': TEMPLATES_BASEPATH + 'layouts/template.html',

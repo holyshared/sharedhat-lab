@@ -6,10 +6,10 @@ api_version: 1
 handlers:
 
 - url: /css
-  static_dir: app/assets/css
+  static_dir: templates/assets/css
 
 - url: /images
-  static_dir: app/assets/images
+  static_dir: templates/assets/images
 
 - url: /.*
   script: sharedhat.py
