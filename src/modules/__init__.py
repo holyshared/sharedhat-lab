@@ -1,4 +1,6 @@
 import os, sys
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../libs'))
 
@@ -10,3 +12,15 @@ TEMPLATES_FILES = {
     'sidebar': TEMPLATES_BASEPATH + 'layouts/partials/sidebar.html',
     'footer': TEMPLATES_BASEPATH + 'layouts/partials/footer.html'
 }
+
+class ModuleHandler(webapp.RequestHandler):
+
+    __values = {}
+
+    def assign(self, values={}):
+        self.__values.update(values)
+
+    def render(self, renderTemplate):
+        self.__values.update(TEMPLATES_FILES)
+        templateFile = os.path.join(TEMPLATES_BASEPATH, renderTemplate)
+        self.response.out.write(template.render(templateFile, self.__values))
