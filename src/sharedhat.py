@@ -15,6 +15,7 @@ class MainPage(modules.ModuleHandler):
 application = webapp.WSGIApplication([
     ('/', MainPage),
     ('/artbeat', artbeat.MainPage),
+    ('/artbeat/event', artbeat.EventPage),
     ('/foursquare', foursquare.MainPage)
     ], debug=True
 )

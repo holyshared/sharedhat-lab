@@ -11,5 +11,8 @@ handlers:
 - url: /images
   static_dir: templates/assets/images
 
+- url: /js
+  static_dir: templates/assets/js
+
 - url: /.*
   script: sharedhat.py

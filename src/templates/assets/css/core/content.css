@@ -1,3 +1,5 @@
+body { font-family: "ヒラギノ角ゴ Pro W3", arial, helvetica, clean, sans-serif; }
+
 /* **************** CONTENT OBJECTS ***************** */
 
 /* ====== Elements ====== */
@@ -7,10 +9,9 @@ strong{font-weight:bold;}
 hr{border: 5px solid #e2e2e2; border-width: 0 0 5px 0; margin: 20px 10px 10px 10px;}
 code{color:#0B8C8F;}
 
-ul, ol, p, dt, dd, th, td { font-size: 108%; }
+ul, ol, p, dt, dd, th, td { font-size: 108%; line-height: 160%; }
 
 section, aside, hgroup { display: block; }
-
 
 /* links */
 a {color: #2c4460; text-decoration: none;}

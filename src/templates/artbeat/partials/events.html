@@ -1,0 +1,16 @@
+{% for event in events %}
+
+<section class="md event">
+	<header>
+		<h1>{{ event.name }}</h1>
+	</header>
+	<div class="bd">
+		<p><img src="{{ event.image.0.src }}" /></p>
+		<p>{{ event.description }}</p>
+		<p>期間: {{ event.dateStart }} - {{ event.dateEnd }}</p>
+		<p>場所: <a class="geo" title="{{ event.latitude }};{{ event.longitude }}" href="{{ event.venue.href }}">{{ event.venue.name }}</a></p>
+		<p><a href="{{ event.href }}">詳細を見る</a></p>
+	</div>
+</section>
+
+{% endfor %}
