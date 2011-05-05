@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import modules
-from artbeater.webapi import ArtBeat
+from services.method import EventSearchNear
 
 #/artbeat
 class MainPage(modules.ModuleHandler):
@@ -14,17 +14,23 @@ class MainPage(modules.ModuleHandler):
 class EventPage(modules.ModuleHandler):
 
     def post(self):
-        req = self.request
-        lat = req.get('latitude')
-        lng = req.get('longitude') 
+#        req = self.request
+#        lat = req.get('latitude')
+#        lng = req.get('longitude') 
 
         self.response.headers['Content-Type'] = 'text/html'
 
-        artbeat = ArtBeat()
-        response = artbeat.eventSearchNear(values={ 'Latitude': lat, 'Longitude': lng }, expires=3600)
+        self.response.out.write('test')
 
-        eventList = response.getResult().getEvent()
-        events = [event.toDictionary() for event in eventList]
 
-        self.assign({ 'events': events })
-        self.render('artbeat/partials/events.html')
+
+        api = EventSearchNear()
+
+#        artbeat = ArtBeat()
+#        response = artbeat.eventSearchNear(values={ 'Latitude': lat, 'Longitude': lng }, expires=3600)
+
+#        eventList = response.getResult().getEvent()
+#        events = [event.toDictionary() for event in eventList]
+
+#        self.assign({ 'events': events })
+#        self.render('artbeat/partials/events.html')
