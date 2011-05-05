@@ -24,23 +24,25 @@ class EventSearchNear():
         req = response.getRequest()
         res = response.getResult()
 
-        result = self.__getCache(md5(req.toQueryString())
+        result = self.__getCache(str(md5(req.toQueryString())))
+
         if (result == False):
             result = self.__responseCache(req.toQueryString(), res, expires)
+
         return result
 
     def __getCache(self, hashkey):
 
         query = Method.all()
-        query.filter('hashkey = :hashkey', hashkey)
-        query.filter('expired <= :expired', datetime.now())
+        query.filter('hashkey = ', hashkey)
+        query.filter('expired <= ', datetime.now())
         method = query.get()
 
         if (method == None):
             return None
 
         query = Event.all()
-        query.filter('method = :method', method)
+        query.filter('method = ', method)
         return query.gets()
 
     def __responseCache(self, query, response, expires):
@@ -56,7 +58,7 @@ class EventSearchNear():
 
         cached = datetime.now()
         method = Method()
-        method.hashkey = md5(query)
+        method.hashkey = str(md5(query))
         method.query = query
         method.name = self._method_name
         method.cached = cached
@@ -74,7 +76,7 @@ class EventSearchNear():
             if (key == 'position'):
                 setattr(model, key, ''.join([event['latitude'], ',' , event['longitude']]))
             else:
-                setattr(model, key, event[key]))
+                setattr(model, key, event[key])
 
         model.venue = self.__createVenue(event.venue)
 
@@ -87,13 +89,3 @@ class EventSearchNear():
         model.put()
 
         return model
-
-
-if __name__ == '__main__':
-
-    service = EventSearchNear()
-    ressult = service.find(values={}, expires=3600)
-
-
-
-
