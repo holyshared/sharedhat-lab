@@ -16,3 +16,6 @@ handlers:
 
 - url: /.*
   script: sharedhat.py
+
+builtins:
+- datastore_admin: on

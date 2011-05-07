@@ -66,7 +66,14 @@ class Entity(dict):
             if (isinstance(value, Entity)):
                 value = value.toDictionary()
             elif (isinstance(value, list)):
-                value = [node.toDictionary() for node in value]
+                expands = []
+                for node in value:
+                    if (hasattr(node, 'toDictionary')):
+                        expands.append(node.toDictionary())
+                    else:
+                        expands.append(node)
+                value = expands
+
             result[_toPropertyName(key)] = value
         return result
 
@@ -176,6 +183,8 @@ class Response(Entity):
                 for item in value:
                     if (isinstance(item, dict)):
                         nodes.append(Response(item)) 
+                    else:
+                        nodes.append(item) 
                 values[key] = nodes
             elif (type(value) is DictType):
                 values[key] = Response(value)

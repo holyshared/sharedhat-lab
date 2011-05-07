@@ -22,6 +22,7 @@ class ResponseParser():
     def _perseElement(self, element):
 
         result = {}
+        elementNumber = 0
         if (element._attrs):
             attrs = element._attrs
             for key, value in attrs.iteritems():
@@ -30,6 +31,7 @@ class ResponseParser():
         if (element.childNodes):
             for node in element.childNodes:
                 if node.nodeType == Node.ELEMENT_NODE:
+                    elementNumber += 1
                     #It converts it into the list type when there are two or more elements of the same name.
                     #Element pattern:
                     #    <Image src="" />
@@ -43,7 +45,7 @@ class ResponseParser():
                     else:
                         result[key] = [result[key], self._perseElement(node)]
                 elif node.nodeType in [Node.TEXT_NODE, Node.CDATA_SECTION_NODE]:
-                    if (len(result) > 0):
+                    if (len(result) > 0 and elementNumber <= 0 and not node.nodeValue.strip() == ''):
                         #When there are an element content and an attribute
                         #Element pattern:
                         #    <Element id="1000">some content</Element>
@@ -58,8 +60,10 @@ class ResponseParser():
         #There is no element content and it only for the attribute
         #Element pattern:
         #    <Element id="1000"></Element>
-        if (len(result) > 0):
+        if (len(result) > 0 and elementNumber <= 0):
             result['content'] = ''
+        elif (len(result) <= 0):
+            result = ''
 
         return result
 
