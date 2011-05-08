@@ -1,18 +1,58 @@
-import os, sys
+import os, sys, pickle, unittest
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../../tests'))
 
-import unittest, unit.models
+import unit.models
 from hashlib import md5
-from datetime import timedelta, datetime, time, date
-from models.artbeat import Method, Venue, Event
+from datetime import timedelta, datetime
+#from datetime import timedelta, datetime, time, date
+#from models.artbeat import Method, Venue, Event, Response
+from models.artbeat import Response
 from google.appengine.ext import db
 
+"""
 def totime(value):
     keys = ['hour', 'minute', 'second']
     values = value.split(':')
     return time(**dict([(keys[i], int(v)) for i, v in enumerate(values)]))
+"""
 
+class ResponseModelTest(unittest.TestCase):
+
+    def setUp(self):
+        self._hashkey = 'lat=1&lng=2'
+
+    def testPut(self):
+        result = True
+        try:
+            props = ['hashkey', 'query', 'name', 'cached', 'expired', 'content']
+            cached = datetime.now()
+            values = {
+                'hashkey': md5(self._hashkey).hexdigest(),
+                'query': self._hashkey,
+                'name': 'testPut',
+                'cached': cached,
+                'expired': cached + timedelta(seconds=3600),
+                'content': pickle.dumps(props)
+            }
+            rp = Response()
+            [setattr(rp, key, values[key]) for key in props]
+            rp.put()
+        except IOError, e:
+            result = False
+
+    def testGet(self):
+        rp = Response.all()
+        rp.filter('hashkey', md5(self._hashkey).hexdigest())
+        model = rp.get()
+
+        self.assertTrue(isinstance(model, db.Model))
+        self.assertTrue(model.name, 'testPut')
+
+
+
+
+"""
 class MethodModelTest(unittest.TestCase):
 
     def setUp(self):
@@ -165,7 +205,7 @@ class EventModelTest(unittest.TestCase):
         self.assertTrue(model.href, 'http://sharedhat.com')
         self.assertTrue(model.price, '10000')
         self.assertTrue(isinstance(model, db.Model))
-
+"""
 
 if __name__ == "__main__":
     unittest.main()

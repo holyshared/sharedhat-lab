@@ -2,6 +2,16 @@
 
 from google.appengine.ext import db
 
+class Response(db.Model):
+    hashkey = db.StringProperty()
+    query = db.StringProperty()
+    name = db.StringProperty()
+    cached = db.DateTimeProperty()
+    expired = db.DateTimeProperty()
+#    content = db.TextProperty()
+    content = db.BlobProperty()
+
+"""
 class Method(db.Model):
     hashkey = db.StringProperty()
     query = db.StringProperty()
@@ -41,3 +51,4 @@ class Event(db.Model):
     daysBeforeEnd = db.IntegerProperty()
     scheduleNote = db.TextProperty()
     permanentEvent = db.IntegerProperty()
+"""
