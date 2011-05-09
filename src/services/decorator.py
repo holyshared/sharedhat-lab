@@ -35,6 +35,8 @@ def DataSourceCache(method, expires=3600):
 
             _saveCache(key=query, method=method, expires=expiresTime, content=content)
 
+            return res
+
         return __cacher
 
     def _saveCache(key, method, expires=3600, content={}):
