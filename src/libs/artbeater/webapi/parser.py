@@ -9,6 +9,11 @@ class ResponseParser():
 
     """Constructor of this class. """
 
+    _multi_element = []
+
+    def __init__(self, elements):
+        self._multi_element = elements
+
     def parse(self, file):
         """The content is read, analyzed from the file, and the dictionary object is returned."""
         document = minidom.parse(file);
@@ -39,7 +44,7 @@ class ResponseParser():
                     #    <Image src="" />
                     key = self._toKey(node.nodeName)
                     if not result.has_key(key):
-                        result[key] = self._perseElement(node)
+                        result[key] = [self._perseElement(node)] if (key in self._multi_element) else self._perseElement(node)
                     elif isinstance(result[key], list):
                         result[key].append(self._perseElement(node))
                     else:
@@ -73,7 +78,7 @@ class ResponseParser():
 
 if __name__ == '__main__':
 
-    parser = ResponseParser()
+    parser = ResponseParser(['event', 'image', 'media'])
     res = parser.parse('../../../test/xml/response.xml')
 
     for event in res['event']:

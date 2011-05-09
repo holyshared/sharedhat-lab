@@ -14,23 +14,23 @@ class MainPage(modules.ModuleHandler):
 class EventPage(modules.ModuleHandler):
 
     def post(self):
-#        req = self.request
-#        lat = req.get('latitude')
-#        lng = req.get('longitude') 
 
-        self.response.headers['Content-Type'] = 'text/html'
-
-        self.response.out.write('test')
-
-
+        req = self.request
+        lat = req.get('latitude')
+        lng = req.get('longitude') 
 
         api = EventSearchNear()
 
-#        artbeat = ArtBeat()
-#        response = artbeat.eventSearchNear(values={ 'Latitude': lat, 'Longitude': lng }, expires=3600)
+        try:
+            rp = api.execute(values={ 'Latitude': lat, 'Longitude': lng }, expires=3600)
+        except URLError, e:
+            pass
+        except HTTPError, e:
+            pass
 
-#        eventList = response.getResult().getEvent()
-#        events = [event.toDictionary() for event in eventList]
+        eventList = rp.getEvent()
+        events = [event.toDictionary() for event in eventList]
 
-#        self.assign({ 'events': events })
-#        self.render('artbeat/partials/events.html')
+        self.response.headers['Content-Type'] = 'text/html'
+        self.assign({ 'events': events })
+        self.render('artbeat/partials/events.html')

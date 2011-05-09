@@ -18,6 +18,8 @@ class AbstractMethod():
 
     _request = None
 
+    _multi_element = [],
+
     def __init__(self, request = None):
         """
         Constructor of this class.
@@ -61,18 +63,24 @@ class AbstractMethod():
         """The request is transmitted and the response object is returned."""
         if (not request == None): self.setRequest(request)
 
-        response = urlopen(self.getHTTPRequest())
+        try:
+            response = urlopen(self.getHTTPRequest())
+        except URLError:
+            raise artbeater.webapi.ServerError, 'There is no response from the server. Please execute it after a while again.'
+        except HTTPError:
+            raise artbeater.webapi.ServerError, 'There is no response from the server. Please execute it after a while again.'
+
         if response.info().get('Content-Encoding') == 'gzip':
             file = StringIO(response.read())
             content = gzip.GzipFile(fileobj=file)
         else:
             content = response
 
-        parser = ResponseParser()
+        parser = ResponseParser(self._multi_element)
         try:
             result = parser.parse(content)
         except ExpatError:
-            raise InvalidResponse, 'Xml not an invalid response was received.'
+            raise artbeater.webapi.InvalidResponse, 'Xml not an invalid response was received.'
 
         return Response({
             'code': response.code,
@@ -93,6 +101,8 @@ class EventSearchNear(AbstractMethod):
     """
 
     _method_name = 'event_searchNear'
+
+    _multi_element = [ 'event', 'media', 'image' ]
 
     _defaults = {
         'Datum': 'world',
@@ -152,11 +162,6 @@ class MethodCreater():
     def getMethods(self):
         """The list of the support method is returned."""
         return self._methods
-
-
-class InvalidResponse(Exception):
-    """This exception is generated at the response to which the response of api is invalid."""
-    pass
 
 
 

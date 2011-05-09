@@ -10,6 +10,16 @@ from artbeater.webapi.cache import CacheManager
 
 ARTBEAT_API_URL = 'http://www.tokyoartbeat.com'
 
+class ServerError(Exception):
+    pass
+
+class NotFoundError(Exception):
+    pass
+
+class InvalidResponse(Exception):
+    """This exception is generated at the response to which the response of api is invalid."""
+    pass
+
 class ArtBeat():
 
     """

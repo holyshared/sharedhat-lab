@@ -10,13 +10,15 @@ os.environ['APPLICATION_ID'] = 'sharedhat-lab'
 import unittest
 from test import test_support
 
-from unit.models.artbeat import MethodModelTest
+from unit.models.artbeat import ResponseModelTest
+from unit.services.decorator import DataStoreCacheTest
 from unit.services.method import EventSearchNearTest
 
 def test_main():
     test_support.run_unittest(
-        MethodModelTest
-#        EventSearchNearTest
+        ResponseModelTest,
+        DataStoreCacheTest,
+        EventSearchNearTest
     )
 
 if __name__ == "__main__":

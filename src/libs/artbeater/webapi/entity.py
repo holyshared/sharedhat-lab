@@ -263,3 +263,10 @@ if __name__ == '__main__':
         print history.getLoginTime()
 
     print response.toDictionary()
+
+    rp = Response({'id': 1})
+    print rp.hasValue('event')
+
+    rp = Response({'event': []})
+    print rp.hasValue('event')
+

@@ -60,6 +60,10 @@ def DataSourceCache(method, expires=3600):
         rp.filter('hashkey = ', md5(key).hexdigest())
         res = rp.get()
 
-        return APIResponse(pickle.loads(res.content)) if (not res == None) else False
+        if (not res == None):
+            content = pickle.loads(res.content)
+            rsp = APIResponse(content)
+
+        return rsp if (not res == None) else False
 
     return _cacher
